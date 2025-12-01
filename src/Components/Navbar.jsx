@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import "./Navbar.css";
 import myResume from '../assets/resume.pdf';
 import { ThemeContext } from '../App';
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +12,9 @@ export default function Navbar() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
   const modalRef = useRef(null);
+  const location = useLocation();
+const isHomePage = location.pathname === "/" || location.pathname === "/Portfolio/";
+
   
   const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
 
@@ -112,16 +116,20 @@ export default function Navbar() {
     <>
       <nav className={`navbar ${isScrolled ? "scrolled" : ""} ${isMobileMenuOpen ? "mobile-open" : ""}`}>
         <div className="nav-container">
-          <div className="nav-logo">
-            <div className="logo-wrapper">
-              <span className="logo-text">SP</span>
-              <div className="logo-glow"></div>
-            </div>
-            <span className="logo-subtitle">Portfolio</span>
+        <div 
+          className="nav-logo" 
+          onClick={() => window.location.href = "/Portfolio/"} 
+          style={{ cursor: "pointer" }}
+        >
+          <div className="logo-wrapper">
+            <span className="logo-text">SP</span>
+            <div className="logo-glow"></div>
           </div>
+          <span className="logo-subtitle">Suryasnata Parhi</span>
+        </div>
 
-          <ul className="nav-links">
-            {navItems.map((item, index) => (
+<ul className="nav-links">
+  {isHomePage && navItems.map((item, index) => (
               <li key={item.name} className="nav-item">
                 <a 
                   href={item.href}
@@ -180,8 +188,8 @@ export default function Navbar() {
               </button>
             </div>
             
-            <ul className="mobile-nav-links">
-              {navItems.map((item) => (
+<ul className="mobile-nav-links">
+  {isHomePage && navItems.map((item) => (
                 <li key={item.name} className="mobile-nav-item">
                   <a 
                     href={item.href}

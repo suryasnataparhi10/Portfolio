@@ -163,11 +163,11 @@ const Footer = () => {
             <div className="contact-info">
               <div className="contact-item">
                 <i className="fas fa-envelope"></i>
-                <a href="mailto:suryasnataparhi10@gmail.com">@suryasnataparhi10@gmail.com</a>
+                <a href="mailto:suryasnataparhi10@gmail.com">suryasnataparhi10@gmail.com</a>
               </div>
               <div className="contact-item">
                 <i className="fas fa-phone"></i>
-                <a href="tel:+916371668962">@+91 6371668962</a>
+                <a href="tel:+916371668962">+91 6371668962</a>
               </div>
               <div className="contact-item">
                 <i className="fas fa-map-marker-alt"></i>
@@ -176,7 +176,7 @@ const Footer = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  @Bhubaneswar, India
+                  Bhubaneswar, India
                 </a>
               </div>
             </div>

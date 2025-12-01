@@ -3,8 +3,10 @@ import "./MyWork.css";
 import bridgit from "../assets/briidgit.png"; 
 import erp from "../assets/erp.png";
 import portfolio from "../assets/portfolio.png";
+import { useNavigate } from "react-router-dom";
 
 export default function MyWork() {
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
   const sectionRef = useRef(null);
@@ -26,65 +28,89 @@ export default function MyWork() {
     return () => observer.disconnect();
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Bridgit - Fitness Platform",
-      category: "MERN Stack",
-      description: "A comprehensive fitness platform connecting trainers and clients for online/offline sessions with real-time features.",
-      shortDescription: "Fitness platform with real-time booking & payments",
-      image: bridgit, // Your actual image import
-      technologies: ["React.js", "Node.js", "MongoDB", "Express.js", "Razorpay", "Agora SDK"],
-      features: [
-        "Slot booking with availability tracking",
-        "Razorpay payment integration", 
-        "Real-time video calls (Agora SDK)",
-        "OTP-based session validation",
-        "JWT role-based authentication",
-        "Fully responsive UI"
-      ],
-      liveLink: "#",
-      githubLink: "#"
-    },
-    {
-      id: 2,
-      title: "ERP System",
-      category: "Enterprise Resource Planning",
-      description: "A role-based ERP platform handling accounting, fund management, and site-level operations with comprehensive reporting.",
-      shortDescription: "Enterprise resource planning system",
-      image: erp, // Your actual image import
-      technologies: ["React.js", "Node.js", "MongoDB", "Bootstrap", "JWT", "REST API"],
-      features: [
-        "Accounting module with wallet system",
-        "Fund request workflow management", 
-        "GST-based purchase/work orders",
-        "Financial reports & dashboards",
-        "Role-based access control",
-        "Expense tracking & audit trails"
-      ],
-      liveLink: "#",
-      githubLink: "#"
-    },
-    {
-      id: 3,
-      title: "Portfolio Website",
-      category: "React.js Development",
-      description: "A modern, responsive portfolio website showcasing skills, projects, and professional journey as a MERN stack developer.",
-      shortDescription: "Modern responsive portfolio",
-      image: portfolio, // Your actual image import
-      technologies: ["React.js", "CSS3", "JavaScript", "Animations", "Responsive Design"],
-      features: [
-        "Modern and responsive design",
-        "Smooth animations & interactions",
-        "Project showcase gallery", 
-        "Contact form integration",
-        "Optimized for performance",
-        "Cross-browser compatibility"
-      ],
-      liveLink: "#",
-      githubLink: "#"
-    }
-  ];
+const projects = [
+  {
+    id: 1,
+    title: "Bridgit - Fitness Platform",
+    category: "MERN Stack",
+    description:
+      "A comprehensive fitness platform connecting trainers and clients for online/offline sessions with real-time features.",
+    shortDescription: "Fitness platform with real-time booking & payments",
+    image: bridgit,
+    technologies: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Razorpay",
+      "Agora SDK",
+    ],
+    features: [
+      "Slot booking with availability tracking",
+      "Razorpay payment integration",
+      "Real-time video calls (Agora SDK)",
+      "OTP-based session validation",
+      "JWT role-based authentication",
+      "Fully responsive UI",
+    ],
+    liveLink: "https://briidgit.com/",   // ✅ Added here
+    githubLink: "#",
+  },
+  {
+    id: 2,
+    title: "ERP System",
+    category: "Enterprise Resource Planning",
+    description:
+      "A role-based ERP platform handling accounting, fund management, and site-level operations with comprehensive reporting.",
+    shortDescription: "Enterprise resource planning system",
+    image: erp,
+    technologies: [
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "Bootstrap",
+      "JWT",
+      "REST API",
+    ],
+    features: [
+      "Accounting module with wallet system",
+      "Fund request workflow management",
+      "GST-based purchase/work orders",
+      "Financial reports & dashboards",
+      "Role-based access control",
+      "Expense tracking & audit trails",
+    ],
+    liveLink: "https://erpfrontend.vnvision.in/", // ✅ Added here
+    githubLink: "#",
+  },
+  {
+    id: 3,
+    title: "Portfolio Website",
+    category: "React.js Development",
+    description:
+      "A modern, responsive portfolio website showcasing skills, projects, and professional journey as a MERN stack developer.",
+    shortDescription: "Modern responsive portfolio",
+    image: portfolio,
+    technologies: [
+      "React.js",
+      "CSS3",
+      "JavaScript",
+      "Animations",
+      "Responsive Design",
+    ],
+    features: [
+      "Modern and responsive design",
+      "Smooth animations & interactions",
+      "Project showcase gallery",
+      "Contact form integration",
+      "Optimized for performance",
+      "Cross-browser compatibility",
+    ],
+    // liveLink: "https://suryasnataparhi10.github.io/Portfolio/", // ✅ Added here
+    githubLink: "#",
+  },
+];
+
 
   return (
     <section className="my-work" id="work" ref={sectionRef}>
@@ -114,15 +140,15 @@ export default function MyWork() {
               {/* Card Background */}
               <div className="card-bg">
                 <div className="bg-gradient"></div>
-                <div className="card-image">
-                  {/* REPLACE THE PLACEHOLDER WITH ACTUAL IMAGE */}
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="project-image"
-                  />
-                  <div className="project-badge">{project.category}</div>
-                </div>
+<div className="card-logo">
+  <img
+    src={project.image}
+    alt={project.title}
+    className="project-logo"
+  />
+  {/* <div className="project-badge">{project.category}</div> */}
+</div>
+
               </div>
 
               {/* Card Content */}
@@ -175,7 +201,7 @@ export default function MyWork() {
 
         {/* View More Projects */}
         <div className={`view-more ${isVisible ? 'visible' : ''}`}>
-          <button className="btn btn-secondary viewallprojects">
+          <button className="btn btn-secondary viewallprojects" onClick={() => navigate('/projectdetails')}>
             View All Projects
             <span className="btn-arrow">→</span>
           </button>

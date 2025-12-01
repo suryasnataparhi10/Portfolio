@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './Components/Hero';
 import Navbar from './Components/Navbar';
 import Loading from './Components/Loading';
@@ -7,6 +8,7 @@ import MyWork from './Components/MyWork';
 import Contact from './Components/Contact';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Footer from './Components/Footer';
+import ProjectDetails from './Components/My_Projects/ProjectDetails';
 
 // Create Theme Context
 export const ThemeContext = React.createContext();
@@ -51,14 +53,32 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
-      <div className={`app ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
-        <Navbar/>
-        <Hero/>
-        <About/>
-        <MyWork/>
-        <Contact/>
-        <Footer/>
-      </div>
+      <Router basename="/Portfolio">
+        <div className={`app ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
+          <Routes>
+            {/* Home page route with all components */}
+            <Route path="/" element={
+              <>
+                <Navbar/>
+                <Hero/>
+                <About/>
+                <MyWork/>
+                <Contact/>
+                <Footer/>
+              </>
+            } />
+            
+            {/* Project Details page route */}
+            <Route path="/projectdetails" element={
+              <>
+                <Navbar/>
+                <ProjectDetails/>
+                <Footer/>
+              </>
+            } />
+          </Routes>
+        </div>
+      </Router>
     </ThemeContext.Provider>
   );
 }

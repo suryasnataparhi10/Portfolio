@@ -5,7 +5,7 @@ import profileImage from "../assets/me2.jpeg";
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedStats, setAnimatedStats] = useState({
-    experience: 10,
+    experience: 8,
     projects: 0,
     pages: 0,
     engagement: 0
@@ -38,7 +38,7 @@ export default function About() {
     const stepDuration = duration / steps;
 
     const counters = {
-      experience: 10,
+      experience: 8,
       projects: 2,
       pages: 10,
       engagement: 30
